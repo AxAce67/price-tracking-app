@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>メール送信完了</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="{{ url_for('static', filename='animations.js') }}"></script>
+</head>
+<body class="email-sent-page">
+    <div id="loading" style="display: none;">
+        <div class="spinner"></div>
+        <p id="loading-text">Loading...</p>
+    </div>
+    <div class="container">
+        <header>
+            <h1><a href="{{ url_for('index') }}" class="header-link">メール送信完了</a></h1>
+        </header>
+        <main>
+            <section class="result-section">
+                <h2>通知設定が完了しました</h2>
+                <p>価格通知の設定が完了し、確認メールを送信しました。</p>
+                <h3>設定内容:</h3>
+                <ul>
+                    <li>商品名: <span class="highlight">{{ product_name }}</span></li>
+                    <li>メールアドレス: <span class="highlight">{{ email }}</span></li>
+                    <li>商品URL: <span class="highlight">{{ url }}</span></li>
+                    <li>目標価格: <span class="highlight">{{ target_price }}円</span></li>
+                </ul>
+                <p>価格が目標に達した際に通知メールが送信されます。</p>
+            </section>
+            <a href="{{ url_for('index', url=url) }}" class="btn btn-primary" data-loading-message="商品情報を取得中...">商品ページに戻る</a>
+        </main>
+        <footer>
+            <p>&copy; 2024 楽天市場価格追跡アプリ. All rights reserved.</p>
+        </footer>
+    </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        animateEmailSentPage();
+        document.querySelectorAll('.btn').forEach(animateButton);
+    });
+    </script>
+</body>
+</html>

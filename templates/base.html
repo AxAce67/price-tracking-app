@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}楽天市場価格追跡{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <div id="loading" style="display: none;">
+        <div class="progress-container">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+        <p id="loading-text">Loading... 0%</p>
+    </div>
+    <div class="container">
+        <header>
+            <h1>{% block header %}楽天市場価格追跡{% endblock %}</h1>
+        </header>
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+        <footer>
+            <p>&copy; 2024 楽天市場価格追跡アプリ. All rights reserved.</p>
+        </footer>
+    </div>
+    <script src="{{ url_for('static', filename='animations.js') }}"></script>
+    {% block extra_scripts %}{% endblock %}
+</body>
+</html>

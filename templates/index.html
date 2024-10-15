@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}楽天市場価格追跡{% endblock %}
+
+{% block content %}
+    <form method="POST" class="tracking-form" id="tracking-form">
+        <div class="form-group">
+            <label for="url">楽天市場商品URL:</label>
+            <input type="text" id="url" name="url" placeholder="https://item.rakuten.co.jp/..." required>
+        </div>
+        <p id="url-error" class="error-message" style="display: none; color: red;">URLを入力してください</p>
+        <button type="submit" class="btn btn-primary" data-loading-message="商品情報を取得中...">追跡開始</button>
+    </form>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const button = document.querySelector('.btn-primary');
+    const form = document.getElementById('tracking-form');
+    const urlInput = document.getElementById('url');
+    const urlError = document.getElementById('url-error');
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault(); // フォームのデフォルト送信を防ぐ
+        if (!urlInput.value.trim()) {
+            urlError.style.display = 'block';
+            return;
+        }
+        urlError.style.display = 'none';
+        showLoading('商品情報を取得中...', '/progress');
+        setTimeout(() => {
+            form.submit(); // フォームを手動で送信
+        }, 500);
+    });
+
+    animateButton(button);
+});
+</script>
+{% endblock %}

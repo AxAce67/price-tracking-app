@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}エラー{% endblock %}
+
+{% block header %}エラーが発生しました{% endblock %}
+
+{% block content %}
+<div class="error-container">
+    <h2>申し訳ありません。エラーが発生しました。</h2>
+    <p class="error-message">{{ message }}</p>
+    {% if error_details %}
+    <div class="error-details">
+        <h3>エラーの詳細:</h3>
+        <pre>{{ error_details }}</pre>
+    </div>
+    {% endif %}
+    <a href="/" class="btn btn-primary">トップページに戻る</a>
+</div>
+{% endblock %}
